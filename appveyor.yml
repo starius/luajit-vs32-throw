@@ -1,0 +1,23 @@
+version: 1.0.{build}
+
+shallow_clone: true
+
+environment:
+  matrix:
+  - Lua: luajit 2.0.4
+    LuaRocks: luarocks 2.3.0
+
+configuration:
+  - vs_32
+  - mingw
+
+install:
+  - PATH %CD%\here\bin;C:\mingw\bin;%PATH%
+  - curl --location --silent --fail --max-time 120 --connect-timeout 30 https://raw.githubusercontent.com/mpeterv/hererocks/master/hererocks.py > hererocks.py
+  - python hererocks.py here --%Lua% --%LuaRocks% --verbose --target=%Configuration% --no-git-cache
+
+build_script:
+  - luarocks make
+
+test_script:
+  - lua test.lua

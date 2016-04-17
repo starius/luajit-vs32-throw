@@ -1,0 +1,22 @@
+language: python
+
+env:
+  global:
+    - LUAROCKS=2.3.0
+  matrix:
+    - LUA="lua 5.1"
+    - LUA="lua 5.2"
+    - LUA="lua 5.3.1"
+    - LUA="luajit 2.0"
+    - LUA="luajit 2.1"
+
+before_install:
+  - wget https://raw.githubusercontent.com/mpeterv/hererocks/1745496a07a14fe4bd6b8c5f533bf9dfa93358cc/hererocks.py
+  - python hererocks.py here --$LUA --luarocks $LUAROCKS
+  - eval $(./here/bin/luarocks path --bin)
+
+install:
+  - luarocks make
+
+script:
+  - lua test.lua
