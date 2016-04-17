@@ -6,6 +6,8 @@ environment:
   matrix:
   - Lua: luajit 2.0.4
     LuaRocks: luarocks 2.3.0
+  - Lua: luajit 2.0.3
+    LuaRocks: luarocks 2.3.0
 
 configuration:
   - vs_32
