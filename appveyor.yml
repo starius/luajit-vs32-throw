@@ -19,7 +19,7 @@ install:
   - python hererocks.py here --%Lua% --%LuaRocks% --verbose --target=%Configuration% --no-git-cache
 
 build_script:
-  - luarocks make
+  - luarocks make "CFLAGS=/EHsc"
 
 test_script:
   - lua test.lua
