@@ -23,7 +23,7 @@ build_script:
 
 test_script:
   #- lua test.lua
-  - lua -e 'print"noop"'
+  - lua -v
 
 before_deploy:
   - tar -czf here.tar.gz here
