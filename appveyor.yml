@@ -28,12 +28,16 @@ test_script:
 before_deploy:
   - tar -czf here.tar.gz here
 
+artifacts:
+  - path: here.tar.gz
+    name: here
+
 deploy:
   description: 'Release description'
   provider: GitHub
   auth_token:
     secure: 5WPBv6dYuUaPrUlD5ouNpEGJIofpyhLl8Lry4lt9T6nGE6my5Z4MLNWC879Wer/s
-  artifact: /here.tar.gz/
+  artifact: here
   draft: false
   prerelease: false
   on:
