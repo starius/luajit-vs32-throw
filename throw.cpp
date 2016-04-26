@@ -1,13 +1,21 @@
 #include <lua.hpp>
 #include <stdexcept>
 
-int throwing_func(lua_State* L) {
+int throwing_func0(lua_State* L) {
     try {
         throw std::logic_error("C++ error");
     } catch (...) {
+        return -1;
+    }
+    return 0;
+}
+
+int throwing_func(lua_State* L) {
+    int result = throwing_func0(L);
+    if (result == -1) {
         return luaL_error(L, "Lua error");
     }
-    return 1;
+    return result;
 }
 
 extern "C" {
